@@ -65,7 +65,7 @@ class Device(models.Model):
         cert = None
         if self.is_test_device:
             try:
-                cert = getattr(settings, 'APN_SANDBOX_PUSH_CERT'
+                cert = getattr(settings, 'APN_SANDBOX_PUSH_CERT')
             except exceptions.AttributeError:
                 raise exceptions.NotImplementedError(
                     'Configure the APN_SANDBOX_PUSH_CERT setting')

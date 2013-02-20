@@ -1,5 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import os
-from setuptools import setup
+
+try:
+    from setuptools import setup
+except ImportError:
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup
 
 # Utility function to read the README file.
 # Used for the long_description.  It's nice, because now 1) we have a top level
@@ -9,7 +17,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "django-ios-push",
+    name = "django-ios-notification",
     version = "1.0",
     author = "Matheus Lima",
     author_email = "matheus.se@gmail.com",
@@ -20,4 +28,6 @@ setup(
     url = "https://github.com/matheussl/django-ios-notification",
     packages=['ios_notification',],
     long_description="N/A",
+
+    requires = [],
 )

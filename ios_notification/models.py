@@ -10,7 +10,7 @@ May not be used for commercial applications without prior concent.
 from django.db import models
 from django.conf import settings
 
-from socket import socket
+import socket
 
 import datetime
 import struct

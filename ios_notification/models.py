@@ -49,7 +49,7 @@ class Device(models.Model):
         unique_together = (('device_token', 'is_test_device'),)
         abstract = True
 
-    def _get_apn_hotname(self):
+    def _get_apn_hostname(self):
         """
         Get the relevant hostname for the instance of the phone
         """
@@ -78,12 +78,12 @@ class Device(models.Model):
         return cert
 
 
-    def _send_push_message(token, payload,):
+    def _send_push_message(self, token, payload,):
         """
         Send message to socket.
         """
-        certfile = _get_apn_cert_path()
-        apn_hostname = _get_apn_hotname
+        certfile = self._get_apn_cert_path()
+        apn_hostname = self._get_apn_hostname()
 
         apns_address = (apn_hostname, 2195)
 
@@ -102,13 +102,13 @@ class Device(models.Model):
         sock.close()
 
 
-    def send_push(message):
+    def send_push(self, message):
         """
         Send push notification to device.
         """
         payload = {"aps": {"alert": message, "badge": 9, "sound":
                            "bingbong.aiff"}}
-        send_push_message(DEVICE_TOKEN, json.dumps(payload))
+        self.send_push_message(self.device_token, json.dumps(payload))
 
 
 def send_push_group(message, devices=[]):

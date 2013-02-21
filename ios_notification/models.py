@@ -108,7 +108,7 @@ class Device(models.Model):
         """
         payload = {"aps": {"alert": message, "badge": 9, "sound":
                            "bingbong.aiff"}}
-        self.send_push_message(self.device_token, json.dumps(payload))
+        self._send_push_message(self.device_token, json.dumps(payload))
 
 
 def send_push_group(message, devices=[]):

@@ -18,7 +18,7 @@ def read(fname):
 
 setup(
     name = "django-ios-notification",
-    version = "1.0",
+    version = "1.0.1",
     author = "Matheus Lima",
     author_email = "matheus.se@gmail.com",
     description = ("A Django Application for contacting the Apple Push Service"

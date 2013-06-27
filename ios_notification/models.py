@@ -102,18 +102,19 @@ class Device(models.Model):
         sock.close()
 
 
-    def send_push(self, message):
+    def send_push(self, message, extra={}):
         """
         Send push notification to device.
         """
-        payload = {"aps": {"alert": message, "badge": 9, "sound":
-                           "bingbong.aiff"}}
+        aps = {"alert": message, "badge": 9, "sound": "bingbong.aiff"}
+        aps.update(extra)
+        payload = {"aps": aps}
         self._send_push_message(self.device_token, json.dumps(payload))
 
 
-def send_push_group(message, devices=[]):
+def send_push_group(message, devices=[], extra={}):
     """
         Send push notification to device group.
     """
     for device in devices:
-        device.send_push(message)
+        device.send_push(message, extra=extra)
